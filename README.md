@@ -1,39 +1,50 @@
-# Chirpy Starter
+<div align="center">
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+# clswhre`s Blog
 
-A minimal, ready-to-use template for creating a blog with the [**Chirpy**][chirpy] Jekyll theme. Get up and running in minutes with all critical files pre-configured.
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success?style=for-the-badge&logo=github)](https://clswhre.github.io/blueberry/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](](https://www.linkedin.com/in/bohdan-kryzhov-a4895439a/).)
 
-## Why This Starter Exists
+*Messing with theory, tools, frameworks, and deep diving into Linux/CyberSec.*
 
-When installing Chirpy through [RubyGems.org][gem], Jekyll can only read a subset of theme files (`_data`, `_layouts`, `_includes`, `_sass`, `assets`) and limited `_config.yml` options from the gem. As a result, users cannot enjoy the full out-of-the-box experience that Chirpy offers.
+</div>
 
-To unlock all features, the following files must be present in your Jekyll site:
+# 🇬🇧🇺🇸 EN:
 
-```shell
-.
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
-```
+## [?] What is this repository about
 
-This starter bundles those files from the latest **Chirpy** release along with a [CD][CD] workflow, so you can start writing immediately.
+Here I document my learning, experiments, and network security; I share the challenges I face and how I solve unusual problems through hands-on practice.
 
-## Usage
+## [!] What I’m currently exploring
 
-Check out the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
+* **Linux & Infrastructure:** Building isolated KVM labs, configuring routing (Jump Box architecture), and customizing the environment.
+* **DevSecOps & Networking:** Analyzing network protocols, port scanning, understanding vulnerabilities at the kernel system call level, and isolating test environments.
+  
+## [+] Latest blog posts
 
-## Contributing
+* In progress
 
-This repository is automatically updated with new releases from the theme repository. If you encounter any issues or want to contribute to its improvement, please visit the [theme repository][chirpy] to provide feedback.
+## [*] Contact Me
 
-## License
+I’m always open to communication and networking. The fastest way to reach me is via **[LinkedIn](https://www.linkedin.com/in/bohdan-kryzhov-a4895439a/)**.
 
-This work is published under [MIT][mit] License.
+---
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+# 🇺🇦 UA:
+
+## [?] Про що цей репозиторій
+
+Тут я документую своє навчання, експерименти, мережеву безпеку, розповідаю про труднощі, з якими стикаюсь та як вирішую нетипові проблеми в процесі практики.
+
+## [!] Що я зараз досліджую
+
+* **Linux & Infrastructure:** Побудова ізольованих KVM-лабораторій, налаштування маршрутизації (Jump Box архітектура), кастомізація оточення.
+* **DevSecOps & Networking:** Аналіз мережевих протоколів, сканування портів, розуміння вразливостей на рівні системних викликів ядра та ізоляція тестових середовищ.
+  
+## [+] Останні записи в блозі
+
+* В процесі
+
+## [*] Зв'язок зі мною
+
+Я завжди відкритий до комунікацій та нетворкінгу. Найшвидший спосіб зв'язатися зі мною --> **[LinkedIn](https://www.linkedin.com/in/bohdan-kryzhov-a4895439a/)**.
