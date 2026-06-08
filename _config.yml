@@ -2,11 +2,8 @@
 
 # Import the theme
 theme: jekyll-theme-chirpy
-
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 lang: en
-
-# Change to your timezone › https://zones.arilyn.cc
 timezone: Europe/Kyiv
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
@@ -14,21 +11,20 @@ timezone: Europe/Kyiv
 
 title: clswhre`s blog # the main title
 
-tagline: Linux, DevSecOps & Engineering Notes # Змінено: Додав більш технічний і влучний опис замість дефолтного
+tagline: Linux, DevSecOps & Engineering Notes
 
 description: >- # used by seo meta and the atom feed
   A technical blog documenting infrastructure experiments, networking security, and "Learn in Public" journey. # Змінено: Відображає твою реальну мету.
 
 # Fill in the protocol & hostname for your site.
-url: "https://clswhre.github.io" # ВАЖЛИВО: Заповнено URL твого GitHub Pages.
+url: "https://clswhre.github.io"
 
 github:
   username: clswhre # change to your GitHub username
 
 social:
   # Change to your full name.
-  name: Bohdan Kryzhov # Змінено: Підставив твоє повне ім'я з посилання на LinkedIn.
-  email: # ТУТ_НАПИШИ_СВІЙ_EMAIL (або видали цей рядок, якщо не хочеш світити пошту)
+  name: Bohdan Kryzhov
   links:
     - https://github.com/clswhre # change to your GitHub homepage
     - https://www.linkedin.com/in/bohdan-kryzhov-a4895439a/
@@ -36,7 +32,7 @@ social:
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
 
-# Web Analytics Settings (Поки залишаємо порожнім, можна додати пізніше)
+# Web Analytics Settings
 analytics:
   google:
     id: 
@@ -58,13 +54,12 @@ pageviews:
   provider: # now only supports 'goatcounter'
 
 # Prefer color scheme setting.
-theme_mode: dark # Змінено: Примусово увімкнув темну тему (для Linux/DevSecOps блогу це мастхев).
-
+theme_mode: dark
 # The CDN endpoint for media resources.
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "https://avatars.githubusercontent.com/clswhre" # Змінено: Тепер блог автоматично підтягуватиме твою аватарку з GitHub!
+avatar: "https://avatars.githubusercontent.com/clswhre
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 social_preview_image: 
@@ -73,8 +68,7 @@ social_preview_image:
 toc: true
 
 comments:
-  provider: # Поки вимкнено. Коли захочеш додати коментарі, рекомендую 'giscus' (він працює через GitHub Discussions).
-  disqus:
+  provider:
     shortname: 
   utterances:
     repo: 
@@ -108,7 +102,6 @@ paginate: 10
 baseurl: ""
 
 # ------------ The following options are not recommended to be modified ------------------
-# (Всю решту файлу залишаємо без змін, вона стандартна для рушія Jekyll)
 
 kramdown:
   footnote_backlink: "&#8617;&#xfe0e;"
