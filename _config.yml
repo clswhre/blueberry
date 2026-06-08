@@ -11,10 +11,10 @@ timezone: Europe/Kyiv
 
 title: clswhre`s blog # the main title
 
-tagline: Linux, DevSecOps & Engineering Notes
+tagline: Blog of Linux enjoyer & CyberSec learner
 
 description: >- # used by seo meta and the atom feed
-  A technical blog documenting infrastructure experiments, networking security, and "Learn in Public" journey. # Змінено: Відображає твою реальну мету.
+  A technical blog documenting infrastructure experiments, networking security, and "Learn in Public" journey.
 
 # Fill in the protocol & hostname for your site.
 url: "https://clswhre.github.io"
