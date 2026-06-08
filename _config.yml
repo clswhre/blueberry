@@ -68,7 +68,7 @@ social_preview_image:
 toc: true
 
 comments:
-  provider:
+  provider: none
     shortname: 
   utterances:
     repo: 
