@@ -1,0 +1,9 @@
+---
+---
+@import "main";
+
+@import url('https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/CaskaydiaCoveNerdFont.min.css');
+
+*:not(.fas):not(.far):not(.fab):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
+  font-family: 'CaskaydiaCove Nerd Font', monospace !important;
+}

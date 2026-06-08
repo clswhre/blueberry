@@ -1,0 +1,18 @@
+<footer aria-label="Site Info" class="page-footer text-muted mt-5 pt-3 pb-4">
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="footer-left">
+      <p class="mb-0">
+        © {{ site.time | date: "%Y" }}
+        <a href="{{ site.social.links[0] | default: site.url }}"
+          >{{ site.social.name }}</a
+        >.
+        <span
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author."
+          >Some rights reserved.</span
+        >
+      </p>
+    </div>
+  </div>
+</footer>
