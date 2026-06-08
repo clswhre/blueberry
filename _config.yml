@@ -59,7 +59,7 @@ theme_mode: dark
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "https://avatars.githubusercontent.com/clswhre
+avatar: "https://avatars.githubusercontent.com/clswhre"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 social_preview_image: 
@@ -99,7 +99,7 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: ""
+baseurl: "/blueberry"
 
 # ------------ The following options are not recommended to be modified ------------------
 
