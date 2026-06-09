@@ -56,7 +56,7 @@ pageviews:
 # Prefer color scheme setting.
 theme_mode: dark
 # The CDN endpoint for media resources.
-cdn:
+# cdn:
 
 # the avatar on sidebar, support local or CORS resources
 avatar: "https://avatars.githubusercontent.com/clswhre"
@@ -71,10 +71,10 @@ comments:
   provider: none
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
-assets:
-  self_host:
-    enabled:
-    env:
+# assets:
+#   self_host:
+#     enabled:
+#     env:
 
 pwa:
   enabled: false
