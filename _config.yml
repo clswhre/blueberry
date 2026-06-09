@@ -1,33 +1,33 @@
 # The Site Configuration
 
-# Import the theme
 theme: jekyll-theme-chirpy
-# The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 lang: en
 timezone: Europe/Kyiv
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: clswhre`s blog # the main title
+title: clswhre`s blog
 
-tagline:  Blog of Linux enjoyer & CyberSec learner
+tagline: Blog of Linux enjoyer & CyberSec learner
 
-description: >- # used by seo meta and the atom feed
+description: >-
   A technical blog documenting infrastructure experiments, networking security, and "Learn in Public" journey.
 
-# Fill in the protocol & hostname for your site.
-url: "https://clswhre.github.io"
+url: "https://clswhre.github.io/"
 
 github:
-  username: clswhre # change to your GitHub username
+  username: clswhre
 
 social:
-  # Change to your full name.
   name: Bohdan Kryzhov
   links:
     - https://github.com/clswhre # change to your GitHub homepage
     - https://www.linkedin.com/in/bohdan-kryzhov-a4895439a/
+
+author:
+  name: Bohdan Kryzhov
+  url: "https://www.linkedin.com/in/bohdan-kryzhov-a4895439a/"
 
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
@@ -35,19 +35,19 @@ social:
 # Web Analytics Settings
 analytics:
   google:
-    id: 
+    id:
   goatcounter:
-    id: 
+    id:
   umami:
-    id: 
-    domain: 
+    id:
+    domain:
   matomo:
-    id: 
-    domain: 
+    id:
+    domain:
   cloudflare:
-    id: 
+    id:
   fathom:
-    id: 
+    id:
 
 # Page views settings
 pageviews:
@@ -62,7 +62,7 @@ cdn:
 avatar: "https://avatars.githubusercontent.com/clswhre"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
-social_preview_image: 
+social_preview_image:
 
 # boolean type, the global switch for TOC in posts.
 toc: true
@@ -73,13 +73,13 @@ comments:
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:
   self_host:
-    enabled: 
-    env: 
+    enabled:
+    env:
 
 pwa:
-  enabled: false 
+  enabled: false
   cache:
-    enabled: false 
+    enabled: false
     deny_paths:
 
 paginate: 10
