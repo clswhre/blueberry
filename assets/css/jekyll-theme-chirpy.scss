@@ -1,9 +1,11 @@
 ---
 ---
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-
 @import "main";
 
-*:not(.fas):not(.far):not(.fab):not(.fa-solid):not(.fa-regular):not(.fa-brands) {
+body {
   font-family: 'JetBrains Mono', monospace !important;
+}
+
+.fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
 }
