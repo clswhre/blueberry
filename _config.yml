@@ -85,7 +85,7 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: "/blueberry"
+baseurl: ""
 
 # ------------ The following options are not recommended to be modified ------------------
 
