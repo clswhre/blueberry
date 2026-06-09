@@ -14,7 +14,7 @@ tagline: Blog of Linux enjoyer & CyberSec learner
 description: >-
   A technical blog documenting infrastructure experiments, networking security, and "Learn in Public" journey.
 
-url: "https://clswhre.github.io/"
+url: "https://clswhre.github.io"
 
 github:
   username: clswhre
@@ -129,14 +129,14 @@ defaults:
 sass:
   style: compressed
 
-compress_html:
-  clippings: all
-  comments: all
-  endings: all
-  profile: false
-  blanklines: false
-  ignore:
-    envs: [development]
+# compress_html:
+#   clippings: all
+#   comments: all
+#   endings: all
+#   profile: false
+#   blanklines: false
+#   ignore:
+#     envs: [development]
 
 exclude:
   - "*.gem"
