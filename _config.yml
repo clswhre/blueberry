@@ -77,9 +77,9 @@ assets:
     env: 
 
 pwa:
-  enabled: true # The option for PWA feature (installable)
+  enabled: false 
   cache:
-    enabled: true # The option for PWA offline cache
+    enabled: false 
     deny_paths:
 
 paginate: 10
