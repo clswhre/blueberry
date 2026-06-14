@@ -1,11 +1,9 @@
 ---
-title: "First steps: creating vulnerable machine"
+title: "Створення вразливої машини [Metasploitable]"
 date: 2026-06-08 22:30:00 +0300
 categories: [Devlog, Daily]
 tags: [jekyll, github-pages, css, kvm, pentest, metasploitable]
 ---
-
-Сьогодні Понеділок, отож мав багато енергії для навчання та практики.
 
 ## (Google Cloud Cybersecurity Certificate)
 
