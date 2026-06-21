@@ -1,8 +1,7 @@
 ---
-title: "Створення вразливої машини [Metasploitable]"
+title: "Створення вразливої машини"
 date: 2026-06-08 22:30:00 +0300
-categories: [Devlog, Daily]
-tags: [jekyll, github-pages, css, kvm, pentest, metasploitable]
+tags: [jekyll, github-pages, kvm, pentest, metasploitable]
 ---
 
 ## (Google Cloud Cybersecurity Certificate)
