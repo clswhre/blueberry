@@ -1,7 +1,8 @@
 ---
 title: "Summer Cyber School"
 date: 2026-06-21 11:00:00 +0300
-tags: [linux, networking, osint, pentest, university]
+categories: [Fundamentals, Networking]
+tags: [wireshark, packet-analysis, nmap, tcp-ip]
 ---
 
 З 10 червня я беру участь у Літній Школі з Кібербезпеки від універститету. За півтори тижні ми пройшли 2 блоки : Linux (Kali) та Комп'ютерні Мережі.

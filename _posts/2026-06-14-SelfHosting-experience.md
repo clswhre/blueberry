@@ -1,7 +1,8 @@
 ---
 title: "Досвід Self-хостингу"
 date: 2026-06-09 21:00:00 +0300
-tags: [linux, dns, networking, adguard, kvm ]
+categories: [Homelab, Self-Hosting]
+tags: [dns, adguard-home, systemd-resolved, linux-administration]
 ---
 
 Сьогодні я продовжив розвивати свою інфраструктуру, перейшовши від базової віртуалізації до управління мережевим трафіком. День був присвячений глибокому зануренню в селхостинг та DNS з додатком у вигляді одного практичного скілу.

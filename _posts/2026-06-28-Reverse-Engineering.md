@@ -1,7 +1,8 @@
 ---
 title: "Trying ReverseEngeneering & crackmes"
 date: 2026-06-21 11:00:00 +0300
-tags: [crackmes, ghidra, ltrace, c, keygen]
+categories: [Security, Reverse Engineering]
+tags: [ghidra, ltrace, c-programming, static-analysis, dynamic-analysis, crackme]
 ---
 
 Під час Літньої школи, про яку я писав раніше, нам гооворили, що можна потрапити у CTF(Osint, web, *reverse* ...) команду університету.
