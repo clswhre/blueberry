@@ -1,7 +1,6 @@
 ---
 title: "Trying ReverseEngeneering & crackmes"
 date: 2026-06-21 11:00:00 +0300
-categories: [Security, Reverse Engineering]
 tags: [ghidra, ltrace, c-programming, static-analysis, dynamic-analysis, crackme]
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "Summer Cyber School"
 date: 2026-06-21 11:00:00 +0300
-categories: [Fundamentals, Networking]
 tags: [wireshark, packet-analysis, nmap, tcp-ip]
 ---
 

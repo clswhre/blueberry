@@ -1,7 +1,6 @@
 ---
 title: "Досвід Self-хостингу"
 date: 2026-06-09 21:00:00 +0300
-categories: [Homelab, Self-Hosting]
 tags: [dns, adguard-home, systemd-resolved, linux-administration]
 ---
 

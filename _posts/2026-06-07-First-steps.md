@@ -1,7 +1,6 @@
 ---
 title: "Створення вразливої машини"
 date: 2026-06-08 22:30:00 +0300
-categories: [Homelab, Virtualization]
 tags: [kvm, network-pentest, nmap, metasploitable]
 ---
 
