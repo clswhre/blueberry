@@ -1,31 +1,30 @@
 ---
-title: "Trying ReverseEngeneering & crackmes"
+title: "Trying Reverse Engineering & Crackmes"
 date: 2026-06-21 11:00:00 +0300
 tags: [ghidra, ltrace, c-programming, static-analysis, dynamic-analysis, crackme]
 ---
 
-Під час Літньої школи, про яку я писав раніше, нам гооворили, що можна потрапити у CTF(Osint, web, *reverse* ...) команду університету.
-Мене це зацікавило, тому, маючи досвід з Сі та Асемблером, я вирішив зануритись в це.
+During the Summer School I wrote about earlier, we were told that it's possible to join the university's CTF team (OSINT, web, *reverse*, etc.). That caught my interest, so with some background in C and Assembly, I decided to dive into it.
 
-## Кейс 1: Статичний аналіз та написання Keygen (Ghidra + C)
+## Case 1: Static Analysis & Writing a Keygen (Ghidra + C)
 
-Першим завданням було розібрати бінарний файл, який вимагав введення валідного ліцензійного ключа на основі імені користувача. Для цього я використав **Ghidra**.
+The first task was to analyze a binary that required entering a valid license key based on a username. I used **Ghidra** for this.
 
-### Аналіз логіки
-Завантаживши бінарник у Ghidra, я знайшов функцію `main`. Її логіка виявилася класичною:
-1. Програма перевіряє кількість аргументів командного рядка (`argc == 2`), очікуючи нікнейм.
-2. Викликається внутрішня функція `get_license` для генерації ключа.
-3. Введений користувачем пароль порівнюється зі згенерованим.
+### Analyzing the Logic
+After loading the binary into Ghidra, I found the `main` function. Its logic turned out to be classic:
+1. The program checks the number of command-line arguments (`argc == 2`), expecting a nickname.
+2. An internal function `get_license` is called to generate the key.
+3. The password entered by the user is compared against the generated one.
 
-Справжня магія ховалася у функції генерації. Програма використовувала жорстко закодований алфавіт (рядок символів) і математичний алгоритм на основі операції ділення за модулем (`%`), щоб посимвольно зібрати правильний ключ для конкретного юзера:
-* Алфавіт: `QAZPLWSXOKMEYDCIJNRFVUHBTGqpalzmwoeirutyskdjfhgxncbv1750284369`
-* Формула: `(i + username[i]) % 62`
-* Довжина ключа: 24 символи.
+The real magic was hiding in the generation function. The program used a hardcoded alphabet (a character string) and a math algorithm based on the modulo operation (`%`) to assemble the correct key character-by-character for a specific user:
+* Alphabet: `QAZPLWSXOKMEYDCIJNRFVUHBTGqpalzmwoeirutyskdjfhgxncbv1750284369`
+* Formula: `(i + username[i]) % 62`
+* Key length: 24 characters.
 
-### Власний Keygen
-Зрозумівши алгоритм, я вирішив написати повноцінний Keygen на мові C.
+### My Own Keygen
+Once I understood the algorithm, I decided to write a full keygen in C.
 
-Ось мій код:
+Here's my code:
 
 ```c
 #include <stdio.h>
@@ -50,19 +49,19 @@ int main(){
 }
 ```
 
-Скрипт успішно компілюється і працює бездоганно.
+The program compiles successfully and works flawlessly.
 
 ---
 
-## Кейс 2: Динамічний аналіз та швидка перемога з ltrace
+## Case 2: Dynamic Analysis & a Quick Win with ltrace
 
-Crackme під назвою "The Wired" від автора OpenWiredSource. Утиліта file показала, що це 64-бітний ELF-файл для Linux, з якого були вирізані налагоджувальні символи (stripped).
+A crackme called "The Wired" by author OpenWiredSource. The `file` utility showed it's a 64-bit ELF binary for Linux, stripped of debug symbols.
 
-При звичайному запуску з випадковим паролем (наприклад, flag), програма створювала в поточній директорії картинку lain_is_here.png (з аніме "Експерименти Лейн") і видавала `[-] Incorrect Password`.
+On a normal run with a random password (e.g. `flag`), the program created an image called `lain_is_here.png` (from the anime "Serial Experiments Lain") in the current directory and printed `[-] Incorrect Password`.
 
-Я вирішив спробувати динамічний підхід (`ltrace`). Якщо програма перевіряє прапор, використовуючи стандартні бібліотечні функції на кшталт strcmp, пароль можна перехопити прямо в пам'яті під час виконання.
+I decided to try a dynamic approach (`ltrace`). If the program checks the flag using standard library functions like `strcmp`, the password can be intercepted right in memory during execution.
 
-Я запустив бінарник через утиліту ltrace:
+I ran the binary through the `ltrace` utility:
 ```bash
 $ ltrace ./thewired flag
 fopen("lain_is_here.png", "wb")                         = 0x55fa168b8010 
@@ -73,8 +72,8 @@ puts("[-] Incorrect Password"[-] Incorrect Password)    = 23
 +++ exited (status 0) +++
 ```
 
-Результат перехоплення:
+Interception result:
 
-У виводі термінала чітко видно системні виклики. Спочатку програма створила зображення, а потім відбувся виклик strcmp(). Програма сама люб'язно поклала правильний пароль у регістр для порівняння з моїм хибним вводом, а ltrace це успішно зафіксував. Повний пароль виявився `we_all_love_serial_experiments_lain`.
+The terminal output clearly shows the system calls. First the program created the image, then a call to `strcmp()` happened. The program itself kindly placed the correct password into the register for comparison against my invalid input, and `ltrace` successfully captured it. The full password turned out to be `we_all_love_serial_experiments_lain`.
 
-Запуск програми з цим паролем видав: ACCESS GRANTED. Welcome to The Wired. Everyone is connected.
+Running the program with this password gave: ACCESS GRANTED. Welcome to The Wired. Everyone is connected.

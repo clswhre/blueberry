@@ -1,112 +1,109 @@
 ---
-title: "Червневий рекап: перші кроки в кібербезпеці"
+title: "June Recap: First Steps into Cybersecurity"
 date: 2026-06-21 21:00:00 +0300
 tags: [kvm, network-pentest, nmap, metasploitable, dns, adguard-home, linux-administration, wireshark, packet-analysis]
 ---
 
-Червень вийшов насиченим: від створення першого homelab до Літньої школи з кібербезпеки.
+June turned out to be packed: from building my first homelab to attending a Summer Cyber School.
 
-## Створення вразливої машини
+## Building a Vulnerable Machine
 
-Замість розгортання вразливих машин прямо в домашній мережі, я спроектував ізольовану архітектуру за моделлю Jump Box.
+Instead of deploying vulnerable machines directly on my home network, I designed an isolated architecture based on the Jump Box model.
 
-**Топологія мережі:**
-1. **Клієнт / Зловмисник:** ноутбук на Arch.
-2. **Гіпервізор:** Сервер на Debian 13, що працює як міст.
-3. **Ізоляція:** Усередині Debian підняв KVM з повністю ізольованим віртуальним комутатором без виходу в інтернет.
-4. **Жертва:** Віртуальна машина **Metasploitable 2**.
+**Network topology:**
+1. **Client / Attacker:** laptop running Arch.
+2. **Hypervisor:** a Debian 13 server acting as a bridge.
+3. **Isolation:** inside Debian I set up KVM with a fully isolated virtual switch with no internet access.
+4. **Victim:** a **Metasploitable 2** virtual machine.
 
 ```
 
-🌐 ДОМАШНЯ МЕРЕЖА (192.168.31.0/24)
+🌐 HOME NETWORK (192.168.31.0/24)
 │
-├── 💻 Ноутбук (Arch)
+├── 💻 Laptop (Arch)
 │   └─ IP: 192.168.31.X
 │
-├── 📡 Роутер Xiaomi
+├── 📡 Xiaomi Router
 │   └─ IP: 192.168.31.1
 │
-├── 🛡️ Сервер Debian (Фізичний ПК)
-│   └─ Роль: Jump Box (Гіпервізор)
-│   └─ Зовнішній IP: 192.168.31.147 (Дивиться в домашню мережу)
-│   └─ Внутрішній IP: 192.168.100.1 (Дивиться в ізольовану мережу)
+├── 🛡️ Debian Server (Physical PC)
+│   └─ Role: Jump Box (Hypervisor)
+│   └─ External IP: 192.168.31.147 (faces the home network)
+│   └─ Internal IP: 192.168.100.1 (faces the isolated network)
 │
-==== 🧱 ВІРТУАЛЬНИЙ ФАЄРВОЛ KVM ====
+==== 🧱 KVM VIRTUAL FIREWALL ====
 │
-🔒 ІЗОЛЬОВАНА МЕРЕЖА KVM "isolated" (192.168.100.0/24)
+🔒 KVM ISOLATED NETWORK "isolated" (192.168.100.0/24)
 │
-└── 🎯 Metasploitable 2 (Віртуальна машина)
-    └─ Роль: Жертва
+└── 🎯 Metasploitable 2 (Virtual Machine)
+    └─ Role: Victim
     └─ IP: 192.168.100.240
 
 ```
 
-### Мережева розвідка
+### Network Reconnaissance
 
-Після вирішення проблем з часом, що не давало можливості оновити gpg ключі для `apt`, я просканував Metasploitable через `nmap -sV` (список сервісів та їх версії) з сервера-гіпервізора.
+After sorting out a clock issue that was preventing gpg keys from updating for `apt`, I scanned Metasploitable using `nmap -sV` (service and version enumeration) from the hypervisor server.
 
-Результат вражає (хоч Metasploitable і задуманий для такого) — 23 відкритих порти, серед яких:
-* Порт 21: `vsftpd 2.3.4` (знаменитий бекдор зі смайликом `:)`).
-* Порт 1524: Відкритий `root bindshell`.
-* Застарілі протоколи в cleartext (Telnet, RSH).
+The result was impressive (though Metasploitable is designed for exactly this) — 23 open ports, including:
+* Port 21: `vsftpd 2.3.4` (the famous smiley-face backdoor).
+* Port 1524: An open `root bindshell`.
+* Legacy cleartext protocols (Telnet, RSH).
 
-### Аналіз "The Fun Way To Learn CYBERSECURITY"
+### Reviewing "The Fun Way To Learn CYBERSECURITY"
 
-День розпочався з перегляду відео від HackersArsenal, яке ідеально лягло на мій поточний вектор розвитку. Головна думка відео: *"Tools don't hack systems, misunderstanding does"*.
+The day started with a video from HackersArsenal that fit perfectly with my current learning direction. The core takeaway: *"Tools don't hack systems, misunderstanding does."*
 
-Автор наголошує на важливості розуміння:
-* **Операційних систем:** Особливо Linux (процеси, права, служби).
-* **Мережевих протоколів:** IP, DNS, порти, firewalls. Це основа, без якої хакінг — це просто сліпе використання програм.
-* **Web Hacking:** Найбільш вразлива зона сьогодні, де розуміння HTTP та сесій є критичним.
+The author emphasizes the importance of understanding:
+* **Operating Systems:** Especially Linux (processes, permissions, services).
+* **Network Protocols:** IP, DNS, ports, firewalls. This is the foundation without which hacking is just blindly running tools.
+* **Web Hacking:** Today's most vulnerable area, where understanding HTTP and sessions is critical.
 
-Цей підхід повністю збігається з моєю вчорашньою сесією, де я вручну відновлював `/etc/shadow` через бекдор, замість використання автоматизованих експлойтів.
+This approach lined up perfectly with my session the day before, where I manually recovered `/etc/shadow` through a backdoor instead of using automated exploits.
 
-### Еволюція Homelab: власний DNS-сервер
+### Homelab Evolution: My Own DNS Server
 
-На просторах гітхабу наткнувся на репо `awesome-selfhosted`, де мене зацікавила категорія `DNS`. Чомусь здалось, що було б корисно в рамках роботи з хомлабом побавитись і з цим. З 4-х пунктів мені припав до вподоби AdGuard Home — сучасний зручний інструмент, просте налаштування та зрозумілий інтерфейс.
+While browsing GitHub, I stumbled on the `awesome-selfhosted` repo and got curious about the `DNS` category. It seemed like it would be worthwhile to play around with this as part of my homelab work too. Out of the 4 options listed, I liked AdGuard Home the most — a modern, convenient tool with simple setup and a clear interface.
 
-#### AdGuard Home на Debian
+#### AdGuard Home on Debian
 
-Замість розгортання DNS на головному домашньому роутері, я вирішив використати свій Debian-сервер (`192.168.31.147`), який підключений до старого роутера.
+Instead of deploying DNS on the main home router, I decided to use my Debian server (`192.168.31.147`), which is connected to the old router.
 
-Під час встановлення я зіткнувся з типовими проблемами, що були описані в документації AdGuard: `systemd-resolved`, який займає 53 порт. Довелося вимкнути його внутрішню заглушку через `/etc/systemd/resolved.conf.d/`.
+During installation I ran into the typical issues described in AdGuard's documentation: `systemd-resolved` occupying port 53. I had to disable its internal stub listener via `/etc/systemd/resolved.conf.d/`.
 
-Використав офіційний скрипт для встановлення AdGuard Home як єдиного бінарного файлу на Go.
+I used the official installation script to set up AdGuard Home as a single Go binary.
 
-З цікавого, під час налаштування AdGuard виникла помилка `bind: address already in use`. За допомогою `lsof` я з'ясував, що KVM використовує власний `dnsmasq` (порт 53) на інтерфейсі `192.168.100.1` для роздачі адрес віртуалкам.
-* Для вирішення цього, налаштував AdGuard слухати порт 53 *лише* на зовнішньому інтерфейсі `eno1` (`192.168.31.147`), залишивши KVM-івський `dnsmasq` у спокої.
+Interestingly, during configuration AdGuard threw a `bind: address already in use` error. Using `lsof`, I found out that KVM runs its own `dnsmasq` (port 53) on the `192.168.100.1` interface to hand out addresses to the VMs.
+* To resolve this, I configured AdGuard to listen on port 53 *only* on the external interface `eno1` (`192.168.31.147`), leaving KVM's `dnsmasq` alone.
 
 ---
 
-## Літня школа з кібербезпеки
+## Summer Cyber School
 
-З 10 червня я беру участь у Літній школі з кібербезпеки від університету. За півтори тижні ми пройшли 2 блоки: Linux (Kali) та Комп'ютерні мережі.
+Since June 10th I've been taking part in a Summer Cyber School run by the university. Over a week and a half we covered 2 blocks: Linux (Kali) and Computer Networks.
 
-Лекції та практичні заняття були сформовані для виконання за 4 години з невеликим coffee-break-ом.
+Lectures and hands-on sessions were structured to fit into 4 hours with a short coffee break.
 
-Перша половина дня була повністю присвячена вивченню теоретичних основ комп'ютерних мереж та операційних систем. Обсяг інформації був величезним, але все лягло в чітку структуру.
+The first half of each day was fully dedicated to the theoretical foundations of computer networks and operating systems. The amount of information was huge, but it all fit into a clear structure.
 
 ### Linux
 
-* **Історія ОС**
-* **Управління файлами**
-* **Управління процесами**
-* **Пайпінг та права доступу**
+* **OS History**
+* **File Management**
+* **Process Management**
+* **Piping and Permissions**
 
-Тут я не знайшов чогось цікавого для себе, бо вже рік користуюсь Linux. В цілому, матеріал якісно зроблений для першого ознайомлення з Linux та командним рядком.
+I didn't find much new for myself here, since I've been using Linux for a year already. Overall, the material is well put together as a first introduction to Linux and the command line.
 
-### Комп'ютерні мережі
+### Computer Networks
 
-* **Архітектура мереж та TCP/IP**: Ми розібрали базові компоненти інфраструктури: проміжні вузли (маршрутизатори, комутатори) та середовище передавання даних.
-* **Адресація та типи трафіку**: Пройшли шлях від фізичного рівня (**MAC**) до логічного. Згадали класи IP-адрес, відокремили діапазони приватних IP, а також розібрали типи розсилки трафіку: **unicast**, **multicast** та **broadcast**.
-* **Мережеві служби та безпека**: Розібрали, як працює **NAT** для трансляції адрес та **DHCP** для динамічної конфігурації. Окремим надважливим блоком пройшлися по концепції **ААА (Аутентифікація, Авторизація, Аудит)**.
-* **Логіка безкласової адресації (CIDR)**: Детально розібрали маски, префікси та перехід від класової до безкласової адресації.
+* **Network Architecture & TCP/IP**: We covered the basic infrastructure components: intermediate nodes (routers, switches) and transmission media.
+* **Addressing & Traffic Types**: We went from the physical layer (**MAC**) up to the logical one. We revisited IP address classes, separated out private IP ranges, and covered traffic types: **unicast**, **multicast**, and **broadcast**.
+* **Network Services & Security**: We covered how **NAT** works for address translation and **DHCP** for dynamic configuration. A separate, critically important block covered the concept of **AAA (Authentication, Authorization, Accounting)**.
+* **Classless Addressing Logic (CIDR)**: We went into detail on masks, prefixes, and the shift from classful to classless addressing.
 
-**Практичні заняття:**
+**Hands-on sessions:**
 
-* **Аналіз трафіку у Wireshark**: Виконували практичні завдання з перехоплення та аналізу пакетів. Через Wireshark ми наочно розбирали **ARP**-запити, інкапсуляцію даних та заголовки, що дозволило побачити мережеву теорію в дії.
-* **Сканування мережі з Nmap**: За допомогою Nmap провели розвідку лабораторного середовища. На практиці розібралися, як визначати активні хости (`-sn`) і версії запущених сервісів (`-sV`), після чого шукали CVE по версіях сервісів.
+* **Traffic Analysis in Wireshark**: We did practical exercises capturing and analyzing packets. Through Wireshark we visually broke down **ARP** requests, data encapsulation, and headers, which made network theory click in practice.
+* **Network Scanning with Nmap**: Using Nmap we ran reconnaissance on the lab environment. In practice, we learned how to identify active hosts (`-sn`) and running service versions (`-sV`), then looked up CVEs for those service versions.
 
----
-
-*Дякую Андрію Анатолійовичу за лекції та організацію школи!!*
